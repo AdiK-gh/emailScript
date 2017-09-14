@@ -7,7 +7,8 @@ def rename_duplicates(old):
     for x in old:
         if x in seen:
             seen[x] += 1
-            yield "%s_%d" % (x, seen[x])
+            a, b =  x.split('.')
+            yield "%s_%d.%s" % (a, seen[x], b)
         else:
             seen[x] = 0
             yield x
@@ -19,6 +20,8 @@ with open(inputFile, "rb") as csvfile:
     reader = list(csv.reader(csvfile, delimiter=','))
 
     for row in reader:
+        for i in range(len(row)):
+            row[i] = row[i].strip()
         fin.append(row[2].lower() + row[0][0].lower() + row[1][0].lower() + row[4][2:] + "." + row[3].lower())
 
     finale = list(rename_duplicates(fin))
