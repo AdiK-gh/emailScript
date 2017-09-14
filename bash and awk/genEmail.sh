@@ -2,7 +2,6 @@
 
 # This awk command takes the csv file, breaks down the first name and surname of the candidate
 # and makes it of the form lastnameFirstnameFather'snameYearofjoining and adds the branch in the end
-echo -e "This is the first awk command\n"
 awk '\
 BEGIN \
 { FS="," } \
@@ -20,7 +19,6 @@ END {} \' $1 > output.csv
 
 # This command handles the duplicates and adds the number after the YearofJoining field and makes the email unique
 # To change the delimiter UNDERSCORE to HYPHEN change it accordingly in only the printf statement of the else block below
-echo -e "This is the second awk command\n"
 # awk '{ split($1, a, ".", seps); printf("%s", a[1]); if(count[$1] == 0) printf("%s.%s@coep.ac.in\n", count[$1], a[2]); else printf("_%s.%s@coep.ac.in\n", count[$1], a[2]); count[$1]++ }' output.csv > finalone.csv
 awk '{ split($1, a, ".", seps) } \
 { printf("%s", a[1]) } \
